@@ -1,36 +1,20 @@
-# todo-backend-clj
+# contacts-backend-clj
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+Used for a tech talk at a Michigan Hackers Hack Night event (https://github.com/hivinay/clojure-web-talk/
+)
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar todo-backend-clj-0.1.0-standalone.jar [args]
+Download and run with `lein run`.
 
 ## Options
 
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
+Requires a PORT environment variable, and a Postgres database with name `DB_NAME` and table `DB_TABLE`. The table must have two text fields called `name` and `email`.
 
 ### Bugs
 
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+Please feel free to report any bugs.
 
 ## License
 
-Copyright © 2015 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+GPL v3 (http://www.gnu.org/licenses/gpl-3.0.html)
