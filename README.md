@@ -9,7 +9,13 @@ Download and run with `lein run`.
 
 ## Options
 
-Requires a PORT environment variable, and a Postgres database with name `DB_NAME` and table `DB_TABLE`. The table must have two text fields called `name` and `email`.
+Requires the following environment variables:
+* `PORT`
+* `DB_HOST`
+* `DB_USER`
+* `DB_NAME`
+* `DB_TABLE`
+The Postgres table with the above connection settings must have two text fields called `name` and `email`.
 
 ### Bugs
 
