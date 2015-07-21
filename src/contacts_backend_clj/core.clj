@@ -13,6 +13,7 @@
   (GET "/notes" []
        (->> (db/get-items)
             (map contact->string)
+            (reduce str)
             (assoc {:status 200} :body)))
   (POST "/notes" request
         (-> request
