@@ -1,0 +1,9 @@
+{
+  "name": "Contacts Backend",
+  "description": "A simple backend in Clojure that can add items to a database and return all items in the database.",
+  "website": "http://hivinay.com/contacts-backend-clj",
+  "repository": "https://github.com/hivinay/contacts-backend-clj",
+  "logo": "http://clojure.org/file/view/clojure-icon.gif",
+  "addons": ["heroku-postgresql:hobby-dev"],
+  "keywords": ["clojure", "backend", "contacts"]
+}

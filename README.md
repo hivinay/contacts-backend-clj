@@ -1,5 +1,7 @@
 # contacts-backend-clj
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 Used for a tech talk at a Michigan Hackers Hack Night event (https://github.com/hivinay/clojure-web-talk/
 )
 
