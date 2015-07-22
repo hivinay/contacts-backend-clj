@@ -15,6 +15,7 @@
 
 (defn -main
   []
-  (do (println "Running...")
+  (do (db/create-table)
+      (println "Running...")
       (run-server (wrap-json-response (wrap-json-body contacts-app {:keywords? true}))
                   {:port (read-string (System/getenv "PORT"))})))
