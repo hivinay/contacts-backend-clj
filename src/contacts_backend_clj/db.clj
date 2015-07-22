@@ -8,12 +8,6 @@
 (def db-name
   (keyword (System/getenv "DB_TABLE")))
 
-(defn add-random-items
-  []
-  (db/insert! postgres-db db-name
-              {:name "Name1" :email "Email1"}
-              {:name "Name2" :email "Email2"}))
-
 (defn add-item
   [item]
   (db/insert! postgres-db db-name

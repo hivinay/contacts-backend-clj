@@ -15,6 +15,7 @@ Requires the following environment variables:
 * `DB_USER`
 * `DB_NAME`
 * `DB_TABLE`
+
 The Postgres table with the above connection settings must have two text fields called `name` and `email`.
 
 ### Bugs
