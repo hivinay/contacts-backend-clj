@@ -8,7 +8,8 @@
                  [compojure "1.4.0"]
                  [http-kit "2.1.19"]
                  [org.clojure/java.jdbc "0.3.7"]
-                 [postgresql "9.3-1102.jdbc41"]]
+                 [postgresql "9.3-1102.jdbc41"]
+                 [heroku-database-url-to-jdbc "0.2.2"]]
   :min-lein-version "2.0.0"
   :main ^:skip-aot contacts-backend-clj.core
   :target-path "target/%s"

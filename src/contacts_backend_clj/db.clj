@@ -1,16 +1,15 @@
 (ns contacts-backend-clj.db
-  (:require [clojure.java.jdbc :as db]))
+  (:require [clojure.java.jdbc :as db]
+            [heroku-database-url-to-jdbc.core :as h]))
 
-(def postgres-db {:subprotocol "postgresql"
-                  :subname (str "//" (System/getenv "DB_HOST") ":5432/" (System/getenv "DB_NAME"))
-                  :user (System/getenv "DB_USER")})
+(def postgres-db (h/jdbc-connection-string (System/getenv "DATABASE_URL")))
 
-(def db-name
+(def db-table
   (keyword (System/getenv "DB_TABLE")))
 
 (defn add-item
   [item]
-  (db/insert! postgres-db db-name
+  (db/insert! postgres-db db-table
               {:name (:name item)
                :email (:email item)}))
 
