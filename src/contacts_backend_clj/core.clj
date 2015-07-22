@@ -5,10 +5,10 @@
             [contacts-backend-clj.db :as db]))
 
 (defroutes contacts-app
-  (GET "/notes" []
+  (GET "/contacts" []
        (->> (db/get-items)
             (assoc {:status 200} :body)))
-  (POST "/notes" request
+  (POST "/contacts" request
         (-> request
             :body
             db/add-item)))
