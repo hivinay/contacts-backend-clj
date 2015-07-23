@@ -3,7 +3,7 @@
             [org.httpkit.server :refer [run-server]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [contacts-backend-clj.db :as db]
-            [contacts-backend-clj.access :refer [all-headers]]))
+            [contacts-backend-clj.access :refer [access-headers]]))
 
 (defroutes contacts-app
   (GET "/contacts" []
