@@ -16,8 +16,7 @@
 
 (defn handler
   []
-  (wrap-json-response (wrap-json-body (access-headers contacts-app) {:keywords? true})
-                      :access-control-allow-methods) [:get :post])
+  (wrap-json-response (wrap-json-body (access-headers contacts-app) {:keywords? true})))
 
 (defn -main
   []
