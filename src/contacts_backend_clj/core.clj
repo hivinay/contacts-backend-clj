@@ -3,7 +3,7 @@
             [org.httpkit.server :refer [run-server]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [contacts-backend-clj.db :as db]
-            [ring.middleware.cors :refer [wrap-cors]]))
+            [contacts-backend-clj.access :refer [all-headers]]))
 
 (defroutes contacts-app
   (GET "/contacts" []
@@ -16,8 +16,8 @@
 
 (defn handler
   []
-  (wrap-cors (wrap-json-response (wrap-json-body contacts-app {:keywords? true}))
-             :access-control-allow-methods [:get :post]))
+  (wrap-json-response (wrap-json-body (access-headers contacts-app) {:keywords? true})
+                      :access-control-allow-methods) [:get :post])
 
 (defn -main
   []
