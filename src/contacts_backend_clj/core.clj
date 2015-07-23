@@ -16,8 +16,8 @@
   []
   (-> contacts-app
       access-headers
-      wrap-json-body
-      (wrap-json-response {:keywords? true})))
+      (wrap-json-body {:keywords? true})
+      wrap-json-response))
 
 (defn -main
   []
