@@ -7,16 +7,17 @@
 
 (defroutes contacts-app
   (GET "/contacts" []
-       (->> (db/get-items)
-            (assoc {:status 200} :body)))
+       {:status 200
+        :body (db/get-items)})
   (POST "/contacts" request
-        (-> request
-            :body
-            db/add-item)))
+        (db/add-item (:body request))))
 
 (defn handler
   []
-  (wrap-json-response (wrap-json-body (access-headers contacts-app) {:keywords? true})))
+  (-> contacts-app
+      access-headers
+      wrap-json-response
+      (wrap-json-body {:keywords? true})))
 
 (defn -main
   []
