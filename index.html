@@ -1,42 +1,51 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact List</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
 <body>
+    <fieldset>
+        <form class="pure-form" "action="/" id="addForm">
+            <legend>Fill in your name and email here to be added to the list!</legend>
+            <input type="text" name="name" placeholder="Name">
+            <input type="email" name="email" placeholder="Email">
+            <button type="submit" class="pure-button pure-button-primary">Add</button>
+        </form>
+        <button class="pure-button pure-button-primary" id="update" onclick="updateTable();">Update</button>
+    </fieldset>
+    <table class="pure-table" id="table"></table>
 
-<h1>Customers</h1>
-<div id="id01"></div>
+    <script>
+     var API = "http://contacts-clj.herokuapp.com/contacts";
 
-<script>
-var xmlhttp = new XMLHttpRequest({mozSystem: true});
-var url = "http://www.contacts-clj.herokuapp.com/contacts";
+     $('#addForm').submit(function(event) {
+         event.preventDefault();
+         $.ajax({
+             url:API,
+             type:"POST",
+             data: JSON.stringify({name: $( this ).find( "input[name='name']").val(),
+                                   email: $( this ).find( "input[name='email']").val()}),
+             contentType:"application/json;",
+             dataType:"json",
+             success: function(){
+                 updateTable();
+             }
+         })
+     });
 
-xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        myFunction(xmlhttp.responseText);
-    }
-}
- xmlhttp.open("GET", url, true);
- xmlhttp.responseType = "json";
- xmlhttp.send();
-
-function myFunction(response) {
-    var arr = JSON.parse(response);
-    var i;
-    var out = "<table>";
-
-    for(i = 0; i < arr.length; i++) {
-        out += "<tr><td>" +
-        arr[i].Name +
-        "</td><td>" +
-        arr[i].City +
-        "</td><td>" +
-        arr[i].Country +
-        "</td></tr>";
-    }
-    out += "</table>";
-    document.getElementById("id01").innerHTML = out;
-}
-</script>
-
+     updateTable = function() {
+         $('#table').empty();
+         $('#table').append('<tr><th>Name</th><th>Email</th>');
+         $. getJSON( API, {} ).done(function( data ) {
+             $.each(data, function(_, item) {
+                 $('#table').append('<tr><td>' + item.name + '</td><td>' + item.email + '</td></tr>');
+             })
+         });
+     };
+     updateTable();
+    </script>
 </body>
 </html>
