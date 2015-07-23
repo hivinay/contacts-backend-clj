@@ -15,7 +15,7 @@
             db/add-item)))
 
 (defn handler
-  [routes]
+  []
   (wrap-cors (wrap-json-response (wrap-json-body contacts-app {:keywords? true}))
              :access-control-allow-methods [:get :post]))
 
