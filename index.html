@@ -8,24 +8,25 @@
 </head>
 <body>
     <fieldset>
-        <form class="pure-form" "action="/" id="addForm">
+        <legend>Type in the path to the API you want to query</legend>
+        <input type="test" id="url" name="url" value="http://contacts-clj.herokuapp.com/contacts">
+        <form class="pure-form pure-form-stacked" id="addForm">
             <legend>Fill in your name and email here to be added to the list!</legend>
             <input type="text" name="name" placeholder="Name">
             <input type="email" name="email" placeholder="Email">
             <button type="submit" class="pure-button pure-button-primary">Add</button>
+            <button class="pure-button pure-button-primary" type="button" onclick="updateTable();" id="update">Update</button>
         </form>
-        <button class="pure-button pure-button-primary" id="update" onclick="updateTable();">Update</button>
+
     </fieldset>
     <table class="pure-table" id="table"></table>
 
     <script>
-     var API = "http://contacts-clj.herokuapp.com/contacts";
-
      $('#addForm').submit(function(event) {
          event.preventDefault();
          $.ajax({
-             url:API,
-             type:"POST",
+             url: document.getElementById('url').value,
+             type: "POST",
              data: JSON.stringify({name: $( this ).find( "input[name='name']").val(),
                                    email: $( this ).find( "input[name='email']").val()}),
              contentType:"application/json;",
@@ -39,11 +40,12 @@
      updateTable = function() {
          $('#table').empty();
          $('#table').append('<tr><th>Name</th><th>Email</th>');
-         $. getJSON( API, {} ).done(function( data ) {
-             $.each(data, function(_, item) {
-                 $('#table').append('<tr><td>' + item.name + '</td><td>' + item.email + '</td></tr>');
-             })
-         });
+         $. getJSON( document.getElementById('url').value, {} )
+          .done(function( data ) {
+              $.each(data, function(_, item) {
+                  $('#table').append('<tr><td>' + item.name + '</td><td>' + item.email + '</td></tr>');
+              })
+          });
      };
      updateTable();
     </script>
